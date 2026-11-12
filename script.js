@@ -19,7 +19,7 @@ function renderTickets(){
 }
 form.addEventListener("submit",event=>{
  event.preventDefault();const data=new FormData(form);
- const newTicket={id:Date.now(),requester:data.get("requester").trim(),title:data.get("title").trim(),category:data.get("category"),priority:data.get("priority"),description:data.get("description").trim(),status:"Aberto",date:new Date().toLocaleDateString("en-CA")};
+ const newTicket={id:Date.now(),requester:data.get("requester").trim(),title:data.get("title").trim(),category:data.get("category"),priority:data.get("priority"),description:data.get("description").trim(),status:"Aberto",date:(()=>{const now=new Date();return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`})()};
  if(!newTicket.requester||!newTicket.title||!newTicket.description)return;
  tickets.unshift(newTicket);saveTickets();form.reset();document.querySelector("#priority").value="Média";document.querySelector("#form-feedback").textContent=`Chamado #${newTicket.id} registrado com sucesso!`;renderTickets();document.querySelector("#chamados").scrollIntoView({behavior:"smooth"});
 });
