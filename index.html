@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HelpDesk Flow - Sistema demonstrativo de gerenciamento de chamados de TI.">
+  <title>HelpDesk Flow | Central de Suporte</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">H</div><div><strong>HelpDesk Flow</strong><small>Central de suporte</small></div></div>
+    <nav>
+      <a href="#dashboard" class="nav-link active">▦ Visão geral</a>
+      <a href="#chamados" class="nav-link">▤ Chamados</a>
+      <a href="#novo-chamado" class="nav-link">＋ Novo chamado</a>
+    </nav>
+    <div class="sidebar-footer"><span class="status-dot"></span>Sistema operacional</div>
+  </aside>
+  <main class="main-content">
+    <header class="topbar">
+      <div><p class="eyebrow">CENTRAL DE ATENDIMENTO</p><h1>Visão geral</h1><p class="subtitle">Acompanhe e gerencie as solicitações de suporte.</p></div>
+      <button class="primary-button" id="open-form">＋ Novo chamado</button>
+    </header>
+    <section class="stats-grid" id="dashboard">
+      <article class="stat-card"><span class="stat-label">Total de chamados</span><strong id="total-count">0</strong><span class="stat-note">Todos os registros</span></article>
+      <article class="stat-card"><span class="stat-label">Abertos</span><strong id="open-count">0</strong><span class="stat-note">Aguardando atendimento</span></article>
+      <article class="stat-card"><span class="stat-label">Em andamento</span><strong id="progress-count">0</strong><span class="stat-note">Em atendimento</span></article>
+      <article class="stat-card"><span class="stat-label">Resolvidos</span><strong id="resolved-count">0</strong><span class="stat-note">Atendimentos concluídos</span></article>
+    </section>
+    <section class="panel" id="novo-chamado">
+      <div class="section-heading"><div><h2>Novo chamado</h2><p>Registre uma solicitação de suporte técnico.</p></div></div>
+      <form id="ticket-form" class="ticket-form">
+        <div class="form-group"><label for="requester">Nome do solicitante</label><input id="requester" name="requester" type="text" placeholder="Ex.: Maria Silva" required maxlength="70"></div>
+        <div class="form-group"><label for="title">Assunto</label><input id="title" name="title" type="text" placeholder="Ex.: Computador não liga" required maxlength="100"></div>
+        <div class="form-group"><label for="category">Categoria</label><select id="category" name="category" required><option value="">Selecione</option><option>Hardware</option><option>Software</option><option>Rede e Internet</option><option>Impressora</option><option>Acesso e Senha</option><option>Outros</option></select></div>
+        <div class="form-group"><label for="priority">Prioridade</label><select id="priority" name="priority" required><option value="Baixa">Baixa</option><option value="Média" selected>Média</option><option value="Alta">Alta</option><option value="Crítica">Crítica</option></select></div>
+        <div class="form-group full-width"><label for="description">Descrição do problema</label><textarea id="description" name="description" rows="3" placeholder="Descreva o problema informado pelo usuário..." required maxlength="1000"></textarea></div>
+        <div class="form-actions full-width"><button class="primary-button" type="submit">Registrar chamado</button><span id="form-feedback" class="feedback" aria-live="polite"></span></div>
+      </form>
+    </section>
+    <section class="panel" id="chamados">
+      <div class="section-heading"><div><h2>Gerenciamento de chamados</h2><p>Consulte, filtre e atualize as solicitações.</p></div><span class="result-count" id="result-count">0 registros</span></div>
+      <div class="filters">
+        <input id="search" type="search" placeholder="Buscar por chamado, solicitante ou assunto...">
+        <select id="status-filter" aria-label="Filtrar por status"><option value="">Todos os status</option><option value="Aberto">Aberto</option><option value="Em andamento">Em andamento</option><option value="Resolvido">Resolvido</option></select>
+        <select id="priority-filter" aria-label="Filtrar por prioridade"><option value="">Todas as prioridades</option><option>Baixa</option><option>Média</option><option>Alta</option><option>Crítica</option></select>
+      </div>
+      <div class="table-wrapper"><table><thead><tr><th>Chamado</th><th>Solicitante</th><th>Assunto</th><th>Prioridade</th><th>Status</th><th>Data</th><th>Ação</th></tr></thead><tbody id="ticket-list"></tbody></table><div id="empty-state" class="empty-state" hidden><strong>Nenhum chamado encontrado.</strong><p>Cadastre um chamado ou ajuste os filtros.</p></div></div>
+    </section>
+    <footer>HelpDesk Flow · Projeto demonstrativo de portfólio · Dados armazenados neste navegador</footer>
+  </main>
+</body>
+</html>
